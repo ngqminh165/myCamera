@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
+import { ChatScreen } from "./ChatScreen";
 
 export default function TabOneScreen() {
   return (
@@ -12,7 +13,8 @@ export default function TabOneScreen() {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+      {/*<EditScreenInfo path="/screens/TabOneScreen.tsx" />*/}
+      <ChatScreen />
     </View>
   );
 }

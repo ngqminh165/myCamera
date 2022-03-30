@@ -16,7 +16,7 @@ export default function SwipeView() {
     const [listData, setListData] = useState(
         Array(5)
             .fill('')
-            .map((_, i) => ({ key: `${i}`, id: 1,  description: "Garage View", date:"Yesterday", time:'11:14 am', image:"./assets/camera_view.jpg" })
+            .map((_, i) => ({ key: `${i}`, id: 1,  description: "Garage View", date:"Yesterday", time:'11:14 am', image:"./assets/images/camera_view.jpg" })
     ));
 
     const closeRow = (rowMap, rowKey) => {
@@ -45,7 +45,7 @@ export default function SwipeView() {
         >
             <View style={styles.row}>
                 {/*<Image source={{ uri: item.image }} style={styles.pic} />*/}
-                <Image style={styles.pic} source={require('../assets/camera_view.jpg')} />
+                <Image style={styles.pic} source={require('../assets/images/camera_view.jpg')} />
                 <View>
                     <View style={styles.nameContainer}>
                         <Badge colorScheme="success" variant={"subtle"}>

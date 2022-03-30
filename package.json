@@ -14,7 +14,7 @@
     "expo-splash-screen": "~0.14.0",
     "expo-status-bar": "~1.2.0",
     "expo-web-browser": "~10.1.0",
-    "native-base": "^3.3.7",
+    "native-base": "3.3.7",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
@@ -25,8 +25,9 @@
     "react-native-svg": "^12.3.0",
     "react-native-vector-icons": "^9.1.0",
     "react-native-web": "0.17.1",
+    "react-native-svg": "12.1.1",
     "socket.io-client": "^4.3.2",
-    "styled-system": "^5.1.5"
+    "react-native-swipe-list-view": "^3.2.9"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

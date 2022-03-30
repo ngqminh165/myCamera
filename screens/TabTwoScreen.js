@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 import ListImageCamera from "../components/ListImageCamera";
 import { Text, View } from "../components/Themed";
+import Profile from "./Profile";
 
 export default function TabTwoScreen() {
   return (
@@ -12,7 +13,7 @@ export default function TabTwoScreen() {
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <ListImageCamera/>
+      <Profile/>
     </View>
   );
 }

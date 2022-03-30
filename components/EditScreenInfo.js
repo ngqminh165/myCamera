@@ -4,8 +4,37 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import Colors from "../constants/Colors";
 import { MonoText } from "./StyledText";
 import { Text, View } from "./Themed";
+import { useEffect, useState } from "react";
+import io from "socket.io-client";
 
 export default function EditScreenInfo({ path }) {
+
+  const [hasConnection, setConnection] = useState(false);
+  const [time, setTime] = useState(null);
+  const [message, setMessage] = useState(null);
+  
+  useEffect(function didMount() {
+    const socket = io("http://1052-24-22-26-19.ngrok.io", {
+      transports: ["websocket"],
+    });
+
+    socket.io.on("open", () => setConnection(true));
+    socket.io.on("close", () => setConnection(false));
+
+    socket.on("motion-detect", (data) => {
+      console.log(data)
+      setMessage(data);
+    });
+
+    socket.on("time-msg", (data) => {
+      setTime(new Date(data.time).toString());
+    });
+
+    return function didUnmount() {
+      socket.disconnect();
+      socket.removeAllListeners();
+    };
+  }, []);
   return (
     <View>
       <View style={styles.getStartedContainer}>
@@ -30,8 +59,7 @@ export default function EditScreenInfo({ path }) {
           lightColor="rgba(0,0,0,0.8)"
           darkColor="rgba(255,255,255,0.8)"
         >
-          Change any of the text, save the file, and your app will automatically
-          update.
+          You're getting the message {message}
         </Text>
       </View>
 

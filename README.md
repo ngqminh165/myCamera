@@ -1,4 +1,4 @@
-# Navigation Example
+# OpenCamera Example
 
 <p>
   <!-- iOS -->
@@ -25,6 +25,17 @@
   - Web: Any web browser
 - When it's time to customize your runtime, refer to the ["Adding custom native code"](https://docs.expo.dev/workflow/customizing/) guide!
 
+### Running the app
+
+- Run `yarn` or `npm install`
+- Open `App.js` and change the `socketEndpoint` at the top of the file to point to your endpoint.
+- Open `app` with [`expo start`](https://docs.expo.dev/versions/latest/workflow/expo-cli/), try it out.
+
+### Running the server
+
+- `cd` into the `backend` directory and run `yarn` or `npm install`, then run `yarn start`
+- Install [ngrok](https://ngrok.com/download) and run `ngrok http 3000` and copy the https url that looks something like this `https://f7333e87.ngrok.io`.
+
 ## Publishing
 
 - Deploy the native app to the App store and Play store using this guide: [Deployment](https://docs.expo.dev/distribution/app-stores/).
@@ -35,3 +46,5 @@
 - Learn more about [Universal React](https://docs.expo.dev/).
 - See what API and components are [available in the React runtimes](https://docs.expo.dev/versions/latest/).
 - Find out more about developing apps and websites: [Official guides](https://docs.expo.dev/guides/).
+
+

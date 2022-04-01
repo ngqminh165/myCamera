@@ -4,10 +4,10 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useColorScheme } from "react-native";
-
 import Colors from "../constants/Colors";
 import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
+import TabThreeScreen from '../screens/TabThreeScreen';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -17,15 +17,21 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
-      screenOptions={{ tabBarActiveTintColor: Colors[colorScheme].tint }}
+      screenOptions={{ 
+        activeTintColor: Colors[colorScheme].tint,
+        style: {
+          backgroundColor: "#7cdd5a",
+          color: "000000"
+        }
+      }}
     >
       <BottomTab.Screen
-        name="Camera"
+        name="Home"
         component={TabOneNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="camera" color={color} />
-          ),
+            <TabBarIcon name="home-outline" color={color} />
+          )
         }}
       />
       <BottomTab.Screen
@@ -33,7 +39,16 @@ export default function BottomTabNavigator() {
         component={TabTwoNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="people" color={color} />
+            <TabBarIcon name="people-outline" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Settings"
+        component={TabThreeNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="settings-outline" color={color} />
           ),
         }}
       />
@@ -57,7 +72,7 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="TabOneScreen"
         component={TabOneScreen}
-        options={{ headerTitle: "Camera Tab Title" }}
+        options={{ headerTitle: "Home" }}
       />
     </TabOneStack.Navigator>
   );
@@ -71,8 +86,22 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: "Profile Tab Title" }}
+        options={{ headerTitle: "Profile" }}
       />
     </TabTwoStack.Navigator>
+  );
+}
+
+const TabThreeStack = createStackNavigator();
+
+function TabThreeNavigator() {
+  return (
+    <TabThreeStack.Navigator>
+      <TabThreeStack.Screen
+        name="TabThreeScreen"
+        component={TabThreeScreen}
+        options={{ headerTitle: "Setting" }}
+      />
+    </TabThreeStack.Navigator>
   );
 }

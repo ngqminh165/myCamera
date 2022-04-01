@@ -14,7 +14,7 @@ import SwipeView from "../components/SwipeView";
 import io from "socket.io-client";
 
 // Replace this URL with your own socket-io host, or start the backend locally
-const socketEndpoint = "https://2303-97-120-68-111.ngrok.io";
+const socketEndpoint = "https://331b-97-120-68-111.ngrok.io";
 
 
 export const ChatScreen = () => {
@@ -48,8 +48,7 @@ export const ChatScreen = () => {
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
-			backgroundColor: '#eeeeee',
-			padding: 10,
+			backgroundColor: '#ffffff',
 		}
 	})
 
@@ -73,7 +72,6 @@ export const ChatScreen = () => {
 					</Text>
 					<Text style={styles.paragraph}>{time}</Text>
 					<Text style={styles.paragraph}>{message}</Text>
-					<Text fontSize="2xl">Room ID: 1</Text>
 					<SwipeView />
 				</>
 			)}

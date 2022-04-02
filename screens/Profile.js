@@ -15,21 +15,21 @@ export default function Profile() {
                     <View style={styles.profileImage}>
                         <Image source={require('../assets/images/profile-pic.jpg')} style={styles.image} resizeMode="center"></Image>
                     </View>
-                    <View style={styles.dm}>
+                    {/* <View style={styles.dm}>
                         <MaterialIcons name="chat" size={18} color="#DFD8C8"></MaterialIcons>
                     </View>
                     <View style={styles.active}></View>
                     <View style={styles.add}>
                         <Ionicons name="ios-add" size={48} color="#DFD8C8" style={{ marginTop: 6, marginLeft: 2 }}></Ionicons>
-                    </View>
+                    </View> */}
                 </View>
 
                 <View style={styles.infoContainer}>
-                    <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>Julie</Text>
-                    <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>Photographer</Text>
+                    <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>Minh Nguyen</Text>
+                    <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>Software Engineer</Text>
                 </View>
 
-                <View style={styles.statsContainer}>
+                {/* <View style={styles.statsContainer}>
                     <View style={styles.statsBox}>
                         <Text style={[styles.text, { fontSize: 24 }]}>483</Text>
                         <Text style={[styles.text, styles.subText]}>Posts</Text>
@@ -60,14 +60,25 @@ export default function Profile() {
                         <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>70</Text>
                         <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase" }]}>Media</Text>
                     </View>
-                </View>
-                <Text style={[styles.subText, styles.recent]}>Recent Activity</Text>
+                </View> */}
+                <Text style={[styles.subText, styles.recent]}>Information</Text>
                 <View style={{ alignItems: "center" }}>
                     <View style={styles.recentItem}>
                         <View style={styles.activityIndicator}></View>
                         <View style={{ width: 250 }}>
                             <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
-                                Started following <Text style={{ fontWeight: "400" }}>Jake Challeahe</Text> and <Text style={{ fontWeight: "400" }}>Luis Poteer</Text>
+                                Status: <Text style={{ fontWeight: "400" }}>Active</Text> <Text style={{ fontWeight: "400" }}></Text>
+                                
+                            </Text>
+                        </View>
+                        
+                    </View>
+
+                    <View style={styles.recentItem}>
+                        <View style={styles.activityIndicator}></View>
+                        <View style={{ width: 250 }}>
+                            <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
+                                Room ID: <Text style={{ fontWeight: "400" }}>L12345678</Text>
                             </Text>
                         </View>
                     </View>
@@ -76,7 +87,16 @@ export default function Profile() {
                         <View style={styles.activityIndicator}></View>
                         <View style={{ width: 250 }}>
                             <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
-                                Started following <Text style={{ fontWeight: "400" }}>Luke Harper</Text>
+                                Device ID: <Text style={{ fontWeight: "400" }}>L12345678</Text>
+                            </Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.recentItem}>
+                        <View style={styles.activityIndicator}></View>
+                        <View style={{ width: 250 }}>
+                            <Text style={[styles.text, { color: "#41444B", fontWeight: "300" }]}>
+                                Home Server: <Text style={{ fontWeight: "400" }}>matrix.org</Text>
                             </Text>
                         </View>
                     </View>
@@ -138,6 +158,16 @@ const styles = StyleSheet.create({
         width: 20,
         borderRadius: 10
     },
+    active2: {
+        backgroundColor: "#34FFB9",
+        position: "absolute",
+        bottom: 28,
+        left: 10,
+        padding: 4,
+        height: 10,
+        width: 10,
+        borderRadius: 10
+    },
     add: {
         backgroundColor: "#41444B",
         position: "absolute",
@@ -187,10 +217,12 @@ const styles = StyleSheet.create({
         shadowOpacity: 1
     },
     recent: {
-        marginLeft: 78,
+        marginLeft: 90,
         marginTop: 32,
-        marginBottom: 6,
-        fontSize: 10
+        marginBottom: 16,
+        fontSize: 15,
+        fontWeight: 'bold',
+       
     },
     recentItem: {
         flexDirection: "row",

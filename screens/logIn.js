@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Input, NativeBaseProvider, Button, Icon, Box, Image, AspectRatio } from 'native-base';
+import { Input, NativeBaseProvider, Button, Icon, Box, Image, AspectRatio, Center } from 'native-base';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { alignContent, flex, flexDirection, marginTop, width } from 'styled-system';
-import { color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
+import { alignContent, borderWidth, flex, flexDirection, marginTop, width } from 'styled-system';
+import { backgroundColor, color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
 
 function Login() {
@@ -30,8 +30,9 @@ function Login() {
         <AspectRatio ratio={1 / 1}>
           <Image
             roundedTop="lg"
+            
             source={{
-              uri: "https://hdclipartall.com/images/security-camera-clipart-video-surveillance-sign-cctv-camera-vector-art-illustration-612x543.jpg",
+              uri: "https://toppng.com/uploads/preview/security-camera-icon-surveillance-camera-icon-white-115534382998iy9sd0qnm.png",
             }}
             alt="image"
           />
@@ -40,30 +41,26 @@ function Login() {
       </View>
 
       <View style={styles.Middle}>
-        <Text style={styles.NameText}>Open Camera</Text>
+        <Text style={styles.NameText}>OpenCamera</Text>
       </View>
       
 
       <View style={styles.Middle}>
-        <Text style={styles.LoginText}>Sign in</Text>
+        <Text style={styles.LoginText}>Sign-in</Text>
       </View>
-      <View style={styles.text2}>
-        <Text>Don't have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("SignUp")} ><Text style={styles.signupText}> Sign up</Text></TouchableOpacity>
-      </View>
+      
       <View >
-        <Text style={styles.text3}>Home Server</Text>
-        <Text style={styles.text4}>matrix.org</Text>
-        <Text style={styles.text4}>Join millions for free on the largest public server</Text>
+        <Text style={styles.text3}>Home Server: matrix.org</Text>
       </View>
       
 
       {/* Username or Email Input Field */}
       <View style={styles.buttonStyle}>
-        
+      <Text style={styles.text4}>Username</Text>
         <View style={styles.emailInput}>
-          <Input
+          <Input 
             InputLeftElement={
+              
               <Icon
                 as={<FontAwesome5 name="user-secret" />}
                 size="sm"
@@ -91,7 +88,7 @@ function Login() {
 
       {/* Password Input Field */}
       <View style={styles.buttonStyleX}>
-        
+      <Text style={styles.text4}>Password</Text>
         <View style={styles.emailInput}>
           <Input
             InputLeftElement={
@@ -121,113 +118,17 @@ function Login() {
       </View>
 
       {/* Button */}
-      <View style={styles.buttonStyle}>
+      <View style={styles.buttonStyle2}>
         <Button onPress={() => navigation.navigate("Root")} style={styles.buttonDesign}>
             Sign in
         </Button>
       </View>
 
-      {/* Line
-      <View style={styles.lineStyle}>
-        <View style={{flex: 1, height: 1, backgroundColor: 'black'}} />
-        <View>
-          <Text style={{width: 50, textAlign: 'center'}}>Or</Text>
-        </View>
-        <View style={{flex: 1, height: 1, backgroundColor: 'black'}} />
-      </View> */}
-
-      
-
-      {/* Box */}
-      {/* <View style={styles.boxStyle}>
-      <Box 
-        onPress={() => navigation.navigate("#")}  // for navigation 
-        style={{height:80, width:80}} 
-        shadow={3}
-        _light={{
-          backgroundColor: "gray.50",
-        }}
-        _dark={{
-          backgroundColor: "gray.700",
-        }}
-      >
-        <AspectRatio ratio={1 / 1}>
-          <Image
-            roundedTop="lg"
-            source={{
-              uri: "https://www.transparentpng.com/thumb/google-logo/colorful-google-logo-transparent-clipart-download-u3DWLj.png",
-            }}
-            alt="image"
-          />
-        </AspectRatio>
-      </Box>
-      <Box 
-        onPress={() => navigation.navigate("#")}  // for navigation
-        style={styles.imageStyle}
-        shadow={3}
-        _light={{
-          backgroundColor: "gray.50",
-        }}
-        _dark={{
-          backgroundColor: "gray.700",
-        }}
-      >
-        <AspectRatio ratio={1 / 1}>
-          <Image
-            
-            roundedTop="lg"
-            source={{
-              uri: "https://www.transparentpng.com/thumb/facebook-logo-png/photo-facebook-logo-png-hd-25.png",
-            }}
-            alt="image"
-          />
-        </AspectRatio>
-      </Box>
-      <Box 
-        onPress={() => navigation.navigate("#")}  // for navigation
-        style={styles.imageStyle}
-        shadow={3}
-        _light={{
-          backgroundColor: "gray.50",
-        }}
-        _dark={{
-          backgroundColor: "gray.700",
-        }}
-      >
-        <AspectRatio ratio={1 / 1}>
-          <Image
-            
-            roundedTop="lg"
-            source={{
-              uri: "https://www.transparentpng.com/thumb/twitter/bird-twitter-socialmedia-icons-png-5.png",
-            }}
-            alt="image"
-          />
-        </AspectRatio>
-      </Box>
-      <Box 
-        onPress={() => navigation.navigate("#")}  // for navigation
-        style={styles.imageStyle}
-        shadow={3}
-        _light={{
-          backgroundColor: "gray.50",
-        }}
-        _dark={{
-          backgroundColor: "gray.700",
-        }}
-      >
-        <AspectRatio ratio={1 / 1}>
-          <Image
-            
-            roundedTop="lg"
-            source={{
-              uri: "https://www.transparentpng.com/thumb/apple-logo/RRgURB-apple-logo-clipart-hd.png",
-            }}
-            alt="image"
-          />
-        </AspectRatio>
-      </Box>
-      </View> */}
+      <View style={styles.text2}>
+        <Text>Don't have an account? </Text>
+        <TouchableOpacity onPress={() => navigation.navigate("SignUp")} ><Text style={styles.signupText}> Sign-up!</Text></TouchableOpacity>
+      </View>
+     
       <StatusBar style="auto" />
     </View>
   );
@@ -247,7 +148,7 @@ export default () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#C2E91C',
   },
   LoginText: {
     marginTop:30,
@@ -260,7 +161,7 @@ const styles = StyleSheet.create({
     fontSize:20,
     fontWeight:'bold',
     alignItems:'center',
-    color: "#026efd"
+    color: "#332D37"
   },
   Middle:{
     alignItems:'center',
@@ -276,18 +177,19 @@ const styles = StyleSheet.create({
     marginLeft:15,
     paddingTop:20,
     fontWeight:'bold',
-    color:"#026efd",
+    color:"#332D37",
   },
 
   text4:{
     flexDirection:'row',
-    marginLeft:15,
-    paddingTop:10,
+    marginLeft:5,
+    fontWeight:'bold',
+    color:"black",
   },
 
   signupText:{
     fontWeight:'bold',
-    color:"#026efd"
+    color:"red"
   },
   emailField:{
     marginTop:30,
@@ -295,7 +197,8 @@ const styles = StyleSheet.create({
   },
   emailInput:{
     marginTop:10,
-    marginRight:5
+    marginRight:5,
+    backgroundColor:'white',
   },
   buttonStyle:{
     marginTop:30,
@@ -307,8 +210,24 @@ const styles = StyleSheet.create({
     marginLeft:15,
     marginRight:15
   },
+  buttonStyle2:{
+    marginTop:30,
+    alignItems:'center',
+    justifyContent:'center',
+    fontWeight:'bold',
+  },
   buttonDesign:{
-    backgroundColor:'#026efd'
+    flexDirection:'row',
+    backgroundColor:"#332D37",
+    width: 100,
+    height: 40,
+    borderRadius: 20,   
+    alignContent: "center",
+    alignItems: 'center',
+    justifyContent:'center',
+    fontWeight:'bold',
+  
+    
   },
   lineStyle:{
     flexDirection:'row',
@@ -327,6 +246,7 @@ const styles = StyleSheet.create({
     marginTop:30,
     marginLeft:15,
     marginRight:15,
-    justifyContent:'space-around'
+    justifyContent:'space-around',
+    
   },
 });

@@ -4,36 +4,29 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Input, NativeBaseProvider, Button, Icon, Box, Image, AspectRatio, Center } from 'native-base';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { alignContent, borderWidth, flex, flexDirection, marginTop, width } from 'styled-system';
-import { backgroundColor, color } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
+import { useAssets } from 'expo-asset';
 
 
 function Login() {
     const navigation = useNavigation();
   return (
-
-
     <View style={styles.container}>
       
       <View style={styles.boxStyle}>
         <Box 
           onPress={() => navigation.navigate("#")}  // for navigation 
-          style={{height:100, width:100}} 
-          shadow={3}
-          _light={{
-            backgroundColor: "gray.50",
-          }}
-          _dark={{
-            backgroundColor: "gray.700",
+          style={{
+            height:100, 
+            width:100,
+            borderRadius: 50
           }}
         >
         <AspectRatio ratio={1 / 1}>
           <Image
             roundedTop="lg"
-            
-            source={{
-              uri: "https://toppng.com/uploads/preview/security-camera-icon-surveillance-camera-icon-white-115534382998iy9sd0qnm.png",
-            }}
+            source={require('../assets/images/security-camera.png')}
+            width={95}
+            height={92}
             alt="image"
           />
         </AspectRatio>
@@ -43,26 +36,19 @@ function Login() {
       <View style={styles.Middle}>
         <Text style={styles.NameText}>OpenCamera</Text>
       </View>
-      
 
       <View style={styles.Middle}>
         <Text style={styles.LoginText}>Sign-in</Text>
       </View>
       
-      <View >
-        <Text style={styles.text3}>Home Server: matrix.org</Text>
-      </View>
-      
-
-      {/* Username or Email Input Field */}
-      <View style={styles.buttonStyle}>
-      <Text style={styles.text4}>Username</Text>
+      {/* Homeserver Input Field */}
+      <View style={styles.buttonStyleX}>
+      <Text style={styles.text4}>Home Server</Text>
         <View style={styles.emailInput}>
           <Input 
             InputLeftElement={
-              
               <Icon
-                as={<FontAwesome5 name="user-secret" />}
+                as={<FontAwesome5 name="home" />}
                 size="sm"
                 m={2}
                 _light={{
@@ -74,7 +60,38 @@ function Login() {
               />
             }
             variant="outline"
-            placeholder="Username or Email"
+            placeholder="Home server"
+            _light={{
+              placeholderTextColor: "blueGray.400",
+            }}
+            _dark={{
+              placeholderTextColor: "blueGray.50",
+            }}
+
+          />
+        </View>
+      </View>
+
+      {/* Username or Email Input Field */}
+      <View style={styles.buttonStyleX}>
+      <Text style={styles.text4}>Username</Text>
+        <View style={styles.emailInput}>
+          <Input 
+            InputLeftElement={
+              <Icon
+                as={<FontAwesome5 name="user" />}
+                size="sm"
+                m={2}
+                _light={{
+                  color: "black",
+                }}
+                _dark={{
+                  color: "gray.300",
+                }}
+              />
+            }
+            variant="outline"
+            placeholder="Username"
             _light={{
               placeholderTextColor: "blueGray.400",
             }}
@@ -126,7 +143,9 @@ function Login() {
 
       <View style={styles.text2}>
         <Text>Don't have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("SignUp")} ><Text style={styles.signupText}> Sign-up!</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("SignUp")} >
+          <Text style={styles.signupText}> Sign-up!</Text>
+        </TouchableOpacity>
       </View>
      
       <StatusBar style="auto" />
@@ -137,9 +156,7 @@ function Login() {
 export default () => {
   return (
     <NativeBaseProvider>
-     
         <Login />
-      
     </NativeBaseProvider>
   )
 }

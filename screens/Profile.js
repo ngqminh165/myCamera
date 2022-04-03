@@ -6,61 +6,17 @@ export default function Profile() {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={styles.titleBar}>
-                    <Ionicons name="ios-arrow-back" size={24} color="#52575D"></Ionicons>
-                    <Ionicons name="aperture-outline" size={24} color="#52575D"></Ionicons>
-                </View>
 
                 <View style={{ alignSelf: "center" }}>
                     <View style={styles.profileImage}>
                         <Image source={require('../assets/images/profile-pic.jpg')} style={styles.image} resizeMode="center"></Image>
                     </View>
-                    {/* <View style={styles.dm}>
-                        <MaterialIcons name="chat" size={18} color="#DFD8C8"></MaterialIcons>
-                    </View>
-                    <View style={styles.active}></View>
-                    <View style={styles.add}>
-                        <Ionicons name="ios-add" size={48} color="#DFD8C8" style={{ marginTop: 6, marginLeft: 2 }}></Ionicons>
-                    </View> */}
                 </View>
 
                 <View style={styles.infoContainer}>
                     <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>Minh Nguyen</Text>
                     <Text style={[styles.text, { color: "#AEB5BC", fontSize: 14 }]}>Software Engineer</Text>
                 </View>
-
-                {/* <View style={styles.statsContainer}>
-                    <View style={styles.statsBox}>
-                        <Text style={[styles.text, { fontSize: 24 }]}>483</Text>
-                        <Text style={[styles.text, styles.subText]}>Posts</Text>
-                    </View>
-                    <View style={[styles.statsBox, { borderColor: "#DFD8C8", borderLeftWidth: 1, borderRightWidth: 1 }]}>
-                        <Text style={[styles.text, { fontSize: 24 }]}>45,844</Text>
-                        <Text style={[styles.text, styles.subText]}>Followers</Text>
-                    </View>
-                    <View style={styles.statsBox}>
-                        <Text style={[styles.text, { fontSize: 24 }]}>302</Text>
-                        <Text style={[styles.text, styles.subText]}>Following</Text>
-                    </View>
-                </View>
-
-                <View style={{ marginTop: 32 }}>
-                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                        <View style={styles.mediaImageContainer}>
-                            <Image source={require("../assets/images/media1.jpg")} style={styles.image} resizeMode="cover"></Image>
-                        </View>
-                        <View style={styles.mediaImageContainer}>
-                            <Image source={require("../assets/images/media2.jpg")} style={styles.image} resizeMode="cover"></Image>
-                        </View>
-                        <View style={styles.mediaImageContainer}>
-                            <Image source={require("../assets/images/media3.jpg")} style={styles.image} resizeMode="cover"></Image>
-                        </View>
-                    </ScrollView>
-                    <View style={styles.mediaCount}>
-                        <Text style={[styles.text, { fontSize: 24, color: "#DFD8C8", fontWeight: "300" }]}>70</Text>
-                        <Text style={[styles.text, { fontSize: 12, color: "#DFD8C8", textTransform: "uppercase" }]}>Media</Text>
-                    </View>
-                </View> */}
                 <Text style={[styles.subText, styles.recent]}>Information</Text>
                 <View style={{ alignItems: "center" }}>
                     <View style={styles.recentItem}>

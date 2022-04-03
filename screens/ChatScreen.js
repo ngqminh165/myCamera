@@ -14,7 +14,7 @@ import SwipeView from "../components/SwipeView";
 import io from "socket.io-client";
 
 // Replace this URL with your own socket-io host, or start the backend locally
-const socketEndpoint = "http://cb16-24-22-26-19.ngrok.io";
+const socketEndpoint = "https://429f-97-120-68-111.ngrok.io";
 
 global.key = 0;
 

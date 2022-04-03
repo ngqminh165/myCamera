@@ -1,3 +1,11 @@
+global.Olm = require('olm');
+global.crypto = require('crypto').webcrypto;
+var LocalStorage = require("node-localstorage").LocalStorage;
+
+const rootFilePath = "./motionDetect/"
+const fs = require('fs');
+const axios = require('axios');
+
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
@@ -5,15 +13,12 @@ const io = require('socket.io')(http);
 // Matrix Set up
 const { MemoryCryptoStore } = require("matrix-js-sdk");
 var sdk = require("matrix-js-sdk");
-global.Olm = require("olm");
-var LocalStorage = require("node-localstorage").LocalStorage;
 global.localStorage = new LocalStorage("./session");
 BASE_URL = "https://matrix.pdxinfosec.org";
 PASSWORD = "G3Vsnzvr";
 USERNAME = "@test003:pdxinfosec.org";
 ROOM_ID = "!bdQMmkTBTMqUPAOvms:pdxinfosec.org";
 const client = sdk.createClient(BASE_URL);
-let sequenceNumberByClient = new Map();
 
 // Add messages when sockets open and close connections
 io.on('connection', socket => {
@@ -38,38 +43,38 @@ run = async () => {
   await client.initCrypto();
   client.setGlobalErrorOnUnknownDevices(false);
   
-  client.on("Event.decrypted", (e) => {
+  client.on("Event.decrypted", async (e) => {
       const { room_id, content } = e.clearEvent;
 
       if (content !== undefined) {
-          console.log(
-              "[room =" + room_id + "]" + e.event.sender + ":" + content.body
-          );
-          console.log(content);
-          io.sockets.emit("motion-detect", content.body);
+        if (typeof content.file !== 'undefined') {
+          const fileExtension = (content.body.slice((Math.max(0, content.body.lastIndexOf(".")) || Infinity) + 1));
+          const fileName = String(content.file.url).split("org/")[1] + "." + fileExtension
+          const filePath = String("./" + rootFilePath + String(content.file.url).split("org/")[1] + "." + fileExtension)
+          console.log(content)
 
-      }
-      console.log("---------------")
-      console.log(client.mxcUrlToHttp("mxc://matrix.org/cNLHCcvYSbWDpguTEAimYXxG", 100, 100))
-      console.log("---------------")
-
-      /*
-      for (const [client, sequenceNumber] of sequenceNumberByClient.entries()) {
-          if (content !== undefined) {
-
-              if (content.msgtype == 'm.image') {
-                  var myMessage = content.body
-                  myMessage += JSON.stringify(content.file, null, ' ')
-
-                  io.sockets.emit("motion-detect", myMessage);
-
-              }
-              
-              else
-                io.sockets.emit("motion-detect", content.body);
-              sequenceNumberByClient.set(client, sequenceNumber + 1);
-          }
-      }*/
+            const response = await axios.get(
+                client.mxcUrlToHttp(content.file.url),
+                { responseType: 'arraybuffer' }
+            );
+            const decryptData = await decryptAttachment(
+                response.data,
+                content.file
+            );
+            
+            fs.writeFile(
+                filePath,
+                Buffer.from(decryptData),
+                (err) => {
+                    if (err) {
+                        console.error(err);
+                    }
+                }
+            );
+            content.fileName = fileName
+            io.sockets.emit("motion-detect", content);
+        }
+    }
 
   });
 
@@ -90,3 +95,59 @@ app.get('/', (req, res) => res.sendFile('index.html'));
 http.listen(3000, function(){
   console.log('listening on *:3000');
 });
+
+
+function decryptAttachment(data, info) {
+  if (
+      info === undefined ||
+      info.key === undefined ||
+      info.iv === undefined ||
+      info.hashes === undefined ||
+      info.hashes.sha256 === undefined
+  ) {
+      throw new Error('error');
+  }
+
+  return global.crypto.subtle
+      .importKey('jwk', info.key, { name: 'AES-CTR' }, false, [
+          'encrypt',
+          'decrypt',
+      ])
+      .then((key) => {
+          return global.crypto.subtle
+              .decrypt(
+                  {
+                      name: 'AES-CTR',
+                      counter: decodeBase64(info.iv), //The same counter you used to encrypt
+                      length: 64, //The same length you used to encrypt
+                  },
+                  key, //from generateKey or importKey above
+                  data //ArrayBuffer of the data
+              )
+              .then(function (decrypted) {
+                  return decrypted;
+              })
+              .catch(function (err) {
+                  console.error(err);
+              });
+      });
+}
+
+function decodeBase64(base64) {
+  // Pad the base64 up to the next multiple of 4.
+  var paddedBase64 = base64 + '==='.slice(0, (4 - (base64.length % 4)) % 4);
+  // Decode the base64 as a misinterpreted Latin-1 string.
+  // window.atob returns a unicode string with codeines in the range 0-255.
+  var latin1String = global.atob(paddedBase64);
+  // Encode the string as a Uint8Array as Latin-1.
+  var uint8Array = new Uint8Array(latin1String.length);
+  for (var i = 0; i < latin1String.length; i++) {
+      uint8Array[i] = latin1String.charCodeAt(i);
+  }
+  return uint8Array;
+}
+
+try {
+  exports.encryptAttachment = encryptAttachment;
+  exports.decryptAttachment = decryptAttachment;
+} catch (e) {}

@@ -14,12 +14,14 @@ import {
     Center
 } from "native-base";
 
-export default function SwipeView1() {
+export default function SwipeView1(props) {
+    console.log("List Image")
+    console.log(props.imageMotionDetect);
+    console.log("List Image")
+
     const [listData, setListData] = useState(
-        Array(5)
-            .fill('')
-            .map((_, i) => ({ key: `${i}`, id: 1,  description: "Garage View", date:"Yesterday", time:'11:14 am', image:"./assets/images/camera_view.jpg" })
-    ));
+        props.imageMotionDetect
+    );
 
     const closeRow = (rowMap, rowKey) => {
         if (rowMap[rowKey]) {
@@ -55,7 +57,7 @@ export default function SwipeView1() {
                 <HStack space={4} alignItems="center" justifyContent="center">
                     <Center h="125" w="220">
                         {/*<Image source={{ uri: item.image }} style={styles.pic} />*/}
-                        <Image style={styles.pic} source={require('../assets/images/camera_view.jpg')} />
+                        <Image style={styles.pic} source={data.item.image} />
                     </Center>
                     <VStack space={4} alignItems="center">
                         <Center h="125" w="130">

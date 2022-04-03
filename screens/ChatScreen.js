@@ -14,14 +14,15 @@ import SwipeView from "../components/SwipeView";
 import io from "socket.io-client";
 
 // Replace this URL with your own socket-io host, or start the backend locally
-const socketEndpoint = "https://331b-97-120-68-111.ngrok.io";
+const socketEndpoint = "http://cb16-24-22-26-19.ngrok.io";
 
+global.key = 0;
 
 export const ChatScreen = () => {
 	const [hasConnection, setConnection] = useState(false);
 	const [time, setTime] = useState(null);
 	const [message, setMessage] = useState(null);
-
+	const [listImages, setImages] = useState([]);
 	useEffect(function didMount() {
 		const socket = io(socketEndpoint, {
 			transports: ["websocket"],
@@ -31,8 +32,20 @@ export const ChatScreen = () => {
 		socket.io.on("close", () => setConnection(false));
 
 		socket.on("motion-detect", (data) => {
-			console.log(data);
-			setMessage(data);
+			//Setting image here...
+			console.log("Receiving image...")
+			const dataImage = {
+				key: global.key,
+				id : 1,
+				description: data.body,
+				time: time,
+				image: "./backend/motionDetect/" + data.fileName
+			}
+			global.key++;
+			console.log(dataImage)
+			console.log("Ending Receive image...")
+			setImages(listImages => [...listImages, dataImage]);
+			setMessage(data.fileName);
 		});
 
 		socket.on("time-msg", (data) => {
@@ -72,7 +85,7 @@ export const ChatScreen = () => {
 					</Text>
 					<Text style={styles.paragraph}>{time}</Text>
 					<Text style={styles.paragraph}>{message}</Text>
-					<SwipeView />
+					<SwipeView imageMotionDetect={listImages}/>
 				</>
 			)}
 		</View>

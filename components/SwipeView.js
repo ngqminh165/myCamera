@@ -20,7 +20,7 @@ export default function SwipeView1(props) {
     console.log("List Image")
 
     const [listData, setListData] = useState(
-        props.imageMotionDetect
+        props.imageMotionDetect[0]
     );
 
     const closeRow = (rowMap, rowKey) => {

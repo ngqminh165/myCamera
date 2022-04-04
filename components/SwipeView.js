@@ -14,14 +14,14 @@ import {
     Center
 } from "native-base";
 
-export default function SwipeView1(props) {
+export default function SwipeView(props) {
     console.log("List Image")
-    console.log(props.imageMotionDetect);
+    console.log("Result: ", props.imageMotionDetect);
     console.log("List Image")
 
-    const [listData, setListData] = useState(
-        props.imageMotionDetect[0]
-    );
+    const [listData, setListData] = useState(props.imageMotionDetect)
+    
+    console.log("List Image:", JSON.stringify(listData))
 
     const closeRow = (rowMap, rowKey) => {
         if (rowMap[rowKey]) {
@@ -56,19 +56,22 @@ export default function SwipeView1(props) {
             <Center w="360" h="125" bg="white" shadow={3}>
                 <HStack space={4} alignItems="center" justifyContent="center">
                     <Center h="125" w="220">
-                        {/*<Image source={{ uri: item.image }} style={styles.pic} />*/}
-                        <Image style={styles.pic} source={data.item.image} />
+                        <Image 
+                            style={styles.pic} 
+                            source={require('../backend/motionDetect/SBXCoYvRvEGUHfWVPFhrWwII.jpg')} />
+                        {/*<Image source={{ uri: item.image }} style={styles.pic} />
+                        <Image style={styles.pic} source={{uri: data.item.image}} />*/}
+                        {/*<Image style={styles.pic} source={require('../backend/motionDetect/CQswKUgUwNOQdtqltAJJjYuB.jpg')} />*/}
                     </Center>
                     <VStack space={4} alignItems="center">
                         <Center h="125" w="130">
-                            <Text fontSize="lg" fontWeight="bold">{data.item.date}</Text>
-                            <Text fontSize="sm">{data.item.time}</Text>
+                            <Text fontSize="lg" fontWeight="bold">{data.item.id}</Text>
+                            <Text fontSize="sm">{data.item.image}</Text>
                         </Center>
                     </VStack>
                 </HStack>
             </Center>
         </TouchableHighlight>
-        
     );
 
     const renderHiddenItem = (data, rowMap) => (

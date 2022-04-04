@@ -14,7 +14,7 @@ import SwipeView from "../components/SwipeView";
 import io from "socket.io-client";
 
 // Replace this URL with your own socket-io host, or start the backend locally
-const socketEndpoint = "https://f302-97-120-68-111.ngrok.io";
+const socketEndpoint = "http://e2c0-97-120-68-111.ngrok.io";
 
 global.key = 0;
 
@@ -39,7 +39,7 @@ export const ChatScreen = () => {
 				id : 1,
 				description: data.body,
 				time: time,
-				image: "./backend/motionDetect/" + data.fileName
+				image: "../backend/motionDetect/" + data.fileName
 			}
 			global.key++;
 			console.log(dataImage)
@@ -56,7 +56,7 @@ export const ChatScreen = () => {
 			socket.disconnect();
 			socket.removeAllListeners();
 		};
-	}, []);
+	}, [listImages]);
 
 	const styles = StyleSheet.create({
 		container: {

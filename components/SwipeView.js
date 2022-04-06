@@ -56,17 +56,18 @@ export default function SwipeView(props) {
             <Center w="360" h="125" bg="white" shadow={3}>
                 <HStack space={4} alignItems="center" justifyContent="center">
                     <Center h="125" w="220">
-                        <Image 
+                        
+                        {/*<Image 
                             style={styles.pic} 
-                            source={require('../backend/motionDetect/SBXCoYvRvEGUHfWVPFhrWwII.jpg')} />
+    source={require('../backend/motionDetect/SBXCoYvRvEGUHfWVPFhrWwII.jpg')} />*/}
                         {/*<Image source={{ uri: item.image }} style={styles.pic} />
                         <Image style={styles.pic} source={{uri: data.item.image}} />*/}
-                        {/*<Image style={styles.pic} source={require('../backend/motionDetect/CQswKUgUwNOQdtqltAJJjYuB.jpg')} />*/}
+                        <Image style={styles.pic} source={{uri: "D:/PSU/Capstones/Frontend-Code/myCamera/backend/motionDetect/" + data.item.image}} />
                     </Center>
                     <VStack space={4} alignItems="center">
                         <Center h="125" w="130">
                             <Text fontSize="lg" fontWeight="bold">{data.item.id}</Text>
-                            <Text fontSize="sm">{data.item.image}</Text>
+                            <Text fontSize="lg" fontWeight="bold">{data.item.description}</Text>
                         </Center>
                     </VStack>
                 </HStack>
